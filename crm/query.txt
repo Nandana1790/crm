@@ -1,0 +1,43 @@
+from django.db import models
+
+# Create your models here.
+class Employees(models.Model):
+    name=models.CharField(max_length=200)
+    department=models.CharField(max_length=200)
+    salary=models.PositiveIntegerField()
+    email=models.EmailField(unique=True)
+    contact=models.CharField(max_length=10,null=True)
+    age=models.PositiveIntegerField()
+
+orm query for creating a new object
+>Employees.objects.create(name="hari",department="qa",salary="60000",email="hari@gmail.com",age=25,contact="test")
+
+orm query for fetching all record
+>qs=Employees.objects.all()
+
+orm query for fetching specific Employee
+>qs=Employees.objects.get(id=1)
+
+orm query for filtering query records
+>qs=Employees.objects.filter(department="hr")
+>qs=Employees.objects.filter(salary__gte=60000)
+qs=Employees.objects.filter(salary__lte=60000)
+__gte= greater than equalto
+__gt= greater than
+__lte= less than equalto
+__lt= less than
+
+orm query to exclude object
+>qs=Employees.objects.exclude(department="hr")
+
+orm query to update object
+>qs=Employees.objects.filter(id=2).update(contact="new",age=29)
+
+orm query to delete object
+>qs=Employees.objects.filter(id=1).delete()
+
+orm query to sort in ascending
+>qs=Employees.objects.all().order_by("salary")
+
+orm query to sort in descending
+qs=Employees.objects.all().order_by("-salary")
